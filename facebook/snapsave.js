@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer")
+const puppeteer = require('puppeteer')
 
 async function download (contentUrl) {
   const browser = await puppeteer.launch({
@@ -6,6 +6,7 @@ async function download (contentUrl) {
     headless: true
   })
   const page = await browser.newPage()
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0')
   await page.goto('https://snapsave.app/id/facebook-reels-download')
   await page.waitForSelector('#url')
   await page.$eval('#url', (el, contentUrl) => (el.value = contentUrl), contentUrl)
